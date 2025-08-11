@@ -5,7 +5,9 @@ import { useApiClient, userApi } from "../utils/api";
 
 export const useUserSync = () => {
   const { isSignedIn } = useAuth();
+  console.log("useUserSync isSignedIn:", isSignedIn);
   const api = useApiClient();
+  console.log("useUserSync api:", api);
 
   const syncUserMutation = useMutation({
     mutationFn: () => userApi.syncUser(api),

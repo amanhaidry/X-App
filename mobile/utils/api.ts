@@ -1,11 +1,11 @@
 import axios, { AxiosInstance } from "axios";
 import { useAuth } from "@clerk/clerk-expo";
 
-// const API_BASE_URL =
-//   process.env.EXPO_PUBLIC_API_URL || "https://x-app-lake.vercel.app/api";
+// const API_BASE_URL ="https://x-app-lake.vercel.app/api";
 // ! 🔥 localhost api would not work on your actual physical device
 // const API_BASE_URL = "http://localhost:5001/api";
 const API_BASE_URL = "http://192.168.29.19:5001/api";
+console.log("API Base URL:", API_BASE_URL); // Add this line for debugging
 
 // this will basically create an authenticated api, pass the token into our headers
 export const createApiClient = (
@@ -27,6 +27,7 @@ export const createApiClient = (
 
 export const useApiClient = (): AxiosInstance => {
   const { getToken } = useAuth();
+  console.log("useApiClient getToken:", getToken); // Add this line for debugging
   return createApiClient(getToken);
 };
 

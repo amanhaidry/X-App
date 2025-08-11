@@ -10,6 +10,7 @@ export const useSocialAuth = () => {
     setIsLoading(true);
     try {
       const { createdSessionId, setActive } = await startSSOFlow({ strategy });
+      console.log("Social auth successful, createdSessionId:", createdSessionId);
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
       }
