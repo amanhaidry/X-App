@@ -7,6 +7,7 @@ const TabsLayout = () => {
   const insets = useSafeAreaInsets();
 
   const { isSignedIn } = useAuth();
+  console.log("TabsLayout isSignedIn:", isSignedIn);
 
   if (!isSignedIn) return <Redirect href="/(auth)" />;
 

@@ -27,9 +27,11 @@ export const updateProfile = asyncHandler(async (req, res) => {
 
 export const syncUser = asyncHandler(async (req, res) => {
   const { userId } = getAuth(req);
+  console.log("userId:"+userId);
 
   // check if user already exists in mongodb
   const existingUser = await User.findOne({ clerkId: userId });
+  console.log("existingUser:"+existingUser);
   if (existingUser) {
     return res
       .status(200)
@@ -38,6 +40,7 @@ export const syncUser = asyncHandler(async (req, res) => {
 
   // create new user from Clerk data
   const clerkUser = await clerkClient.users.getUser(userId);
+  console.log("clerkUser:"+clerkUser);
 
   const userData = {
     clerkId: userId,
@@ -49,13 +52,16 @@ export const syncUser = asyncHandler(async (req, res) => {
   };
 
   const user = await User.create(userData);
+  console.log("user:"+user);
 
   res.status(201).json({ user, message: "User created successfully" });
 });
 
 export const getCurrentUser = asyncHandler(async (req, res) => {
   const { userId } = getAuth(req);
+  console.log("userid:"+userId);
   const user = await User.findOne({ clerkId: userId });
+  console.log("user:"+user);
 
   if (!user) return res.status(404).json({ error: "User not found" });
 
