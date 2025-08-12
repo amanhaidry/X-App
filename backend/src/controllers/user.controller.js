@@ -26,6 +26,8 @@ export const updateProfile = asyncHandler(async (req, res) => {
 });
 
 export const syncUser = asyncHandler(async (req, res) => {
+  console.log("Request headers(usercontroller):", req.headers);
+  console.log("Request body(usercontroller):", req.body);
   const { userId } = getAuth(req);
   console.log("userId:"+userId);
 

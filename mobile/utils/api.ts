@@ -1,10 +1,12 @@
 import axios, { AxiosInstance } from "axios";
 import { useAuth } from "@clerk/clerk-expo";
 
-// const API_BASE_URL ="https://x-app-lake.vercel.app/api";
 // ! 🔥 localhost api would not work on your actual physical device
+const API_BASE_URL ="https://x-app-lake.vercel.app/api";
 // const API_BASE_URL = "http://localhost:5001/api";
-const API_BASE_URL = "http://192.168.29.19:5001/api";
+// const API_BASE_URL = "http://192.168.29.19:5001/api";
+// const API_BASE_URL = "http://127.0.0.1:5001/api";
+
 console.log("API Base URL:", API_BASE_URL); // Add this line for debugging
 
 // this will basically create an authenticated api, pass the token into our headers
@@ -15,10 +17,16 @@ export const createApiClient = (
 
   api.interceptors.request.use(async (config) => {
     const token = await getToken();
-    console.log("Clerk Token:", token); // Add this line for debugging
+    console.log("Clerk Token:", token); // Keep this line for debugging
+    console.log("Full Request URL:", config.url);
+    console.log("Request Method:", config.method);
+    
     if (token) {
+      config.headers = config.headers || {};
       config.headers.Authorization = `Bearer ${token}`;
     }
+    
+    console.log("Request Headers:", config.headers);
     return config;
   });
 
