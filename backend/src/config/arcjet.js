@@ -4,28 +4,29 @@ import { ENV } from "./env.js";
 // initialize Arcjet with security rules
 export const aj = arcjet({
   key: ENV.ARCJET_KEY,
-  characteristics: ["ip.src"],
+  characteristics: ["ip.src", "user_agent"], // added user_agent for better bot detection
+
   rules: [
-    // shield protects your app from common attacks e.g. SQL injection, XSS, CSRF attacks
+    // 🛡️ Protect against common attacks (SQLi, XSS, CSRF)
     shield({ mode: "LIVE" }),
 
-    // bot detection - block all bots except search engines
+    // 🤖 Bot detection - block all bots except search engines and emulator
     detectBot({
       mode: "LIVE",
       allow: [
-        "CATEGORY:SEARCH_ENGINE",
-        // allow legitimate search engine bots
-        // see full list at https://arcjet.com/bot-list
+        "CATEGORY:SEARCH_ENGINE", // allow Googlebot, Bingbot, etc.
+        "USER_AGENT:okhttp*", // allow all OkHttp versions (Android emulator)
+        "IP:127.0.0.1", // allow localhost (optional for dev)
+        "IP:192.168.29.19", // allow local network IP (optional for dev)
       ],
     }),
 
-    // rate limiting with token bucket algorithm
+    // 🚦 Rate limiting with token bucket algorithm
     tokenBucket({
       mode: "LIVE",
       refillRate: 10, // tokens added per interval
-      interval: 10, // interval in seconds (10 seconds)
-      capacity: 15, // maximum tokens in bucket
+      interval: 10, // interval in seconds
+      capacity: 15, // max tokens in bucket
     }),
   ],
 });
-
