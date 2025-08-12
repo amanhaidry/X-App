@@ -4,7 +4,9 @@ import { ENV } from "./env.js";
 // initialize Arcjet with security rules
 export const aj = arcjet({
   key: ENV.ARCJET_KEY,
-  characteristics: ["ip.src", "user_agent"], // added user_agent for better bot detection
+  characteristics: [
+    // "ip.src",
+    "user_agent"], // added user_agent for better bot detection
 
   rules: [
     // 🛡️ Protect against common attacks (SQLi, XSS, CSRF)
@@ -15,9 +17,9 @@ export const aj = arcjet({
       mode: "LIVE",
       allow: [
         "CATEGORY:SEARCH_ENGINE", // allow Googlebot, Bingbot, etc.
-        "USER_AGENT:okhttp*", // allow all OkHttp versions (Android emulator)
-        "IP:127.0.0.1", // allow localhost (optional for dev)
-        "IP:192.168.29.19", // allow local network IP (optional for dev)
+        // "USER_AGENT:okhttp*", // allow all OkHttp versions (Android emulator)
+        // "IP:127.0.0.1", // allow localhost (optional for dev)
+        // "IP:192.168.29.19", // allow local network IP (optional for dev)
       ],
     }),
 
