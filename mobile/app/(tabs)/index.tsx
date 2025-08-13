@@ -1,4 +1,4 @@
-// import PostComposer from "@/components/PostComposer";
+import PostComposer from "@/components/PostComposer";
 // import PostsList from "@/components/PostsList";
 import SignOutButton from "@/components/SignOutButton";
 // import { usePosts } from "@/hooks/usePosts";
@@ -41,7 +41,7 @@ const HomeScreen = () => {
           />
         }
       >
-        {/* <PostComposer /> */}
+        <PostComposer />
         {/* <PostsList /> */}
       </ScrollView>
     </SafeAreaView>
