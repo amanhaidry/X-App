@@ -1,7 +1,7 @@
 import PostComposer from "@/components/PostComposer";
-// import PostsList from "@/components/PostsList";
+import PostsList from "@/components/PostsList";
 import SignOutButton from "@/components/SignOutButton";
-// import { usePosts } from "@/hooks/usePosts";
+import { usePosts } from "@/hooks/usePosts";
 import { useUserSync } from "@/hooks/useUserSync";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   const [isRefetching, setIsRefetching] = useState(false);
-  // const { refetch: refetchPosts } = usePosts();
+  const { refetch: refetchPosts } = usePosts();
 
   const handlePullToRefresh = async () => {
     setIsRefetching(true);
@@ -42,7 +42,7 @@ const HomeScreen = () => {
         }
       >
         <PostComposer />
-        {/* <PostsList /> */}
+        <PostsList />
       </ScrollView>
     </SafeAreaView>
   );
