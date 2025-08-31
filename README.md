@@ -1,5 +1,9 @@
 # X-App - Full-Stack Social Media Application
 
+<p align="center">
+   <img src="banner/banner1.jpg" alt="X-App Banner" width="100%" />
+</p>
+
 A modern full-stack social media application built with React Native (Expo) for mobile and Node.js/Express for the backend. This app provides a Twitter-like experience with features for posting, commenting, liking, and real-time notifications.
 <!-- Tech stack icons -->
 <p align="center">
@@ -20,6 +24,9 @@ A modern full-stack social media application built with React Native (Expo) for 
 </p>
 
 ## 🚀 Features
+<p align="center">
+   <img src="banner/banner2.jpg" alt="X-App Banner" width="100%" />
+</p>
 
 ### Mobile App (React Native/Expo)
 - **Authentication**: Social login with Google and Apple using Clerk
